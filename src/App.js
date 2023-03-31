@@ -1,58 +1,58 @@
-import './App.css'
+import "./App.css";
 
-import { makeStyles } from '@material-ui/core'
-import { useMediaQuery } from 'react-responsive'
+import { makeStyles } from "@material-ui/core";
+import { useMediaQuery } from "react-responsive";
 
-import '@fontsource/roboto'
+import "@fontsource/roboto";
 
-import NavBar from './components/NavBar.js'
-import Intro from './components/Intro.js'
-import Projects from './components/Projects.js'
-import Contact from './components/Contact.js'
+import NavBar from "./components/NavBar.js";
+import Intro from "./components/Intro.js";
+import Education from "./components/Education";
+import Projects from "./components/Projects.js";
+import Contact from "./components/Contact.js";
 
 function App() {
   // TODO: initialize isDesktop here and pass as props
 
-  const isDesktop = useMediaQuery({ minWidth: 992 })
+  const isDesktop = useMediaQuery({ minWidth: 992 });
 
-    const desktopStyles = makeStyles({
-      container: {
-          marginBlock: 80,
-          marginInline: 120
-      }
-    });
+  const desktopStyles = makeStyles({
+    container: {
+      marginBlock: 80,
+      marginInline: 120,
+    },
+  });
 
-    const mobileStyles = makeStyles({
-      container: {
-          marginBlock: 80,
-          marginInline: 40
-      }
-    });
+  const mobileStyles = makeStyles({
+    container: {
+      marginBlock: 80,
+      marginInline: 40,
+    },
+  });
 
-    const useStyles = isDesktop ? desktopStyles : mobileStyles;
-    const classes = useStyles();
+  const useStyles = isDesktop ? desktopStyles : mobileStyles;
+  const classes = useStyles();
 
-
-  const isTestMode = false
+  const isTestMode = false;
 
   if (isTestMode) {
     const Desktop = ({ children }) => {
-      const isDesktop = useMediaQuery({ minWidth: 992 })
-      return isDesktop ? children : null
-    }
+      const isDesktop = useMediaQuery({ minWidth: 992 });
+      return isDesktop ? children : null;
+    };
     const Tablet = ({ children }) => {
-      const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 991 })
-      return isTablet ? children : null
-    }
+      const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 991 });
+      return isTablet ? children : null;
+    };
     const Mobile = ({ children }) => {
-      const isMobile = useMediaQuery({ maxWidth: 767 })
-      return isMobile ? children : null
-    }
+      const isMobile = useMediaQuery({ maxWidth: 767 });
+      return isMobile ? children : null;
+    };
     const Default = ({ children }) => {
-      const isNotMobile = useMediaQuery({ minWidth: 768 })
-      return isNotMobile ? children : null
-    }
-    
+      const isNotMobile = useMediaQuery({ minWidth: 768 });
+      return isNotMobile ? children : null;
+    };
+
     const Example = () => (
       <div>
         <Desktop>Desktop or laptop</Desktop>
@@ -60,30 +60,27 @@ function App() {
         <Mobile>Mobile</Mobile>
         <Default>Not mobile (desktop or laptop or tablet)</Default>
       </div>
-    )
+    );
   }
 
   return (
     <div className="App">
-
       {/* NAVIGATION BAR */}
-      <NavBar/>
-      
-      {/* FIRST SECTION */}
-      <Intro/>
+      <NavBar />
+
+      {/* INTRO SECTION */}
+      <Intro />
+
+      {/* EDUCATION SECTION */}
+      <Education />
 
       {/* PROJECTS SECTION */}
-      <div id="projects" style={{paddingTop:"50px"}}>
-        <Projects/>
-      </div>
+      <Projects />
 
       {/* CONTACT */}
-      <div id="contact">
-        <Contact/>
-      </div>
-      
-      {isTestMode ? <Example/> : null}
+      <Contact />
 
+      {isTestMode ? <Example /> : null}
     </div>
   );
 }
