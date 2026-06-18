@@ -1,6 +1,6 @@
-import { Container, Box, Typography, Grid, Chip } from '@mui/material'
-import { useTheme } from '@mui/material/styles'
-import useMediaQuery from '@mui/material/useMediaQuery'
+import { Box, Chip, Typography, Grid } from '@mui/material'
+import SectionWrapper from './SectionWrapper'
+import SectionHeader from './SectionHeader'
 
 const skillGroups = [
   {
@@ -28,46 +28,43 @@ const skillGroups = [
   },
 ]
 
-const Skills = () => {
-  const theme = useTheme()
-  const isDesktop = useMediaQuery(theme.breakpoints.up('md'))
+const Skills = () => (
+  <SectionWrapper id="skills" bgcolor="background.default">
+    <SectionHeader title="Skills" />
 
-  return (
-    <>
-      <div id="skills" style={{ paddingTop: 75 }} />
-      <Container maxWidth="lg">
-        <Box sx={{ my: 10, mx: isDesktop ? 5 : 0 }}>
+    <Grid container spacing={4}>
+      {skillGroups.map(({ category, skills }) => (
+        <Grid item xs={12} sm={6} key={category}>
           <Typography
-            variant="h3"
-            align="left"
-            sx={{ mb: isDesktop ? 4 : 2, fontSize: isDesktop ? '3rem' : '2rem' }}
+            variant="overline"
+            display="block"
+            gutterBottom
+            sx={{ fontWeight: 700, letterSpacing: '0.1em', color: 'text.secondary', mb: 1.5 }}
           >
-            Skills
+            {category}
           </Typography>
-
-          <Grid container spacing={4}>
-            {skillGroups.map(({ category, skills }) => (
-              <Grid item xs={12} sm={6} key={category}>
-                <Typography
-                  variant="overline"
-                  display="block"
-                  gutterBottom
-                  sx={{ fontWeight: 600, letterSpacing: 2 }}
-                >
-                  {category}
-                </Typography>
-                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-                  {skills.map((skill) => (
-                    <Chip key={skill} label={skill} variant="outlined" size="small" />
-                  ))}
-                </Box>
-              </Grid>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+            {skills.map((skill) => (
+              <Chip
+                key={skill}
+                label={skill}
+                sx={{
+                  bgcolor: '#EFF6FF',
+                  color: 'primary.dark',
+                  fontWeight: 600,
+                  fontSize: '0.75rem',
+                  borderRadius: '6px',
+                  border: '1px solid',
+                  borderColor: '#BFDBFE',
+                  '&:hover': { bgcolor: '#DBEAFE' },
+                }}
+              />
             ))}
-          </Grid>
-        </Box>
-      </Container>
-    </>
-  )
-}
+          </Box>
+        </Grid>
+      ))}
+    </Grid>
+  </SectionWrapper>
+)
 
 export default Skills

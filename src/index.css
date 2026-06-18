@@ -1,5 +1,27 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #ffffff;
+  color: #0F172A;
+}
+
+/* Remove default list styles for experience bullets */
+ul.bullets {
+  margin: 0.5rem 0 0;
+  padding-left: 1.25rem;
+}
+
+ul.bullets li {
+  margin-bottom: 0.375rem;
+  line-height: 1.7;
+  color: #475569;
 }

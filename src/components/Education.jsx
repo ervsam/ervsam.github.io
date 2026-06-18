@@ -1,6 +1,6 @@
-import { Container, Box, Typography, Grid, Card, CardMedia, CardContent } from '@mui/material'
-import { useTheme } from '@mui/material/styles'
-import useMediaQuery from '@mui/material/useMediaQuery'
+import { Box, Avatar, Typography } from '@mui/material'
+import SectionWrapper from './SectionWrapper'
+import SectionHeader from './SectionHeader'
 
 const schools = [
   {
@@ -8,66 +8,69 @@ const schools = [
     name: 'Simon Fraser University',
     degree: 'Master of Science in Computing Science',
     years: 'Sep 2022 – Dec 2025',
-    detail: 'GPA 3.84/4.33 · Thesis: "Learning to Prioritize: Accelerating Priority-Based Search for Lifelong Multi-Agent Path Finding"',
+    gpa: 'GPA 3.84 / 4.33',
+    detail: 'Thesis: "Learning to Prioritize: Accelerating Priority-Based Search for Lifelong Multi-Agent Path Finding"',
   },
   {
     logo: '/images/NTHU_Round_Seal.png',
     name: 'National Tsing Hua University',
     degree: 'Bachelor of Science in Computer Science',
     years: 'Sep 2018 – Jun 2022',
-    detail: 'GPA 3.94/4.3',
+    gpa: 'GPA 3.94 / 4.3',
   },
 ]
 
-const Education = () => {
-  const theme = useTheme()
-  const isDesktop = useMediaQuery(theme.breakpoints.up('md'))
+const Education = () => (
+  <SectionWrapper id="education" bgcolor="background.paper">
+    <SectionHeader title="Education" />
 
-  return (
-    <>
-      <div id="education" style={{ paddingTop: 75 }} />
-      <Container maxWidth="lg">
-        <Box sx={{ my: 10, mx: isDesktop ? 5 : 0 }}>
-          <Typography
-            variant="h3"
-            align="left"
-            sx={{ mb: isDesktop ? 4 : 2, fontSize: isDesktop ? '3rem' : '2rem' }}
-          >
-            Education
-          </Typography>
+    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+      {schools.map(({ logo, name, degree, years, gpa, detail }) => (
+        <Box
+          key={name}
+          sx={{
+            display: 'flex',
+            gap: { xs: 2, sm: 3 },
+            alignItems: 'flex-start',
+          }}
+        >
+          <Avatar
+            src={logo}
+            alt={name}
+            variant="rounded"
+            sx={{
+              width: { xs: 52, sm: 64 },
+              height: { xs: 52, sm: 64 },
+              flexShrink: 0,
+              bgcolor: '#F1F5F9',
+              '& img': { objectFit: 'contain', p: 0.5 },
+            }}
+          />
 
-          {schools.map(({ logo, name, degree, years, detail }) => (
-            <Grid container spacing={3} sx={{ py: 3 }} key={name}>
-              <Grid item xs={12} md={4}>
-                <Card sx={{ maxWidth: 345 }}>
-                  <CardMedia
-                    sx={{ height: 200, backgroundSize: 'contain', bgcolor: '#fafafa' }}
-                    image={logo}
-                    title={name}
-                  />
-                </Card>
-              </Grid>
-              <Grid item xs={12} md={8} sx={{ display: 'flex', alignItems: 'center' }}>
-                <CardContent sx={{ pl: 0 }}>
-                  <Typography gutterBottom align="left" variant="h4" component="h2">
-                    {name}
-                  </Typography>
-                  <Typography variant="h6" align="left" color="text.secondary" gutterBottom>
-                    {degree}
-                    <br />
-                    {years}
-                  </Typography>
-                  <Typography variant="body2" align="left" color="text.secondary">
-                    {detail}
-                  </Typography>
-                </CardContent>
-              </Grid>
-            </Grid>
-          ))}
+          <Box>
+            <Typography variant="h6" fontWeight={700} sx={{ lineHeight: 1.3, mb: 0.25 }}>
+              {name}
+            </Typography>
+            <Typography variant="body1" color="text.secondary" fontWeight={500} sx={{ mb: 0.5 }}>
+              {degree}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {years} · {gpa}
+            </Typography>
+            {detail && (
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                sx={{ mt: 0.75, fontStyle: 'italic', lineHeight: 1.6 }}
+              >
+                {detail}
+              </Typography>
+            )}
+          </Box>
         </Box>
-      </Container>
-    </>
-  )
-}
+      ))}
+    </Box>
+  </SectionWrapper>
+)
 
 export default Education
