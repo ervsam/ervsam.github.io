@@ -13,6 +13,7 @@ import Skills from './components/Skills'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import Highlights from './components/Highlights'
 
 function App() {
   const [scrollProgress, setScrollProgress] = useState(0)
@@ -48,6 +49,7 @@ function App() {
         <NavBar />
         <Box component="main" sx={{ flexGrow: 1 }}>
           <Intro />
+          <Highlights />
           <Experience />
           <Education />
           <Skills />

@@ -40,7 +40,7 @@ const Contact = () => (
           >
             Get in Touch
           </Typography>
-          <Box sx={{ mt: 1.5, width: 40, height: 3, bgcolor: 'primary.main', borderRadius: 1 }} />
+          <Box sx={{ mt: 1.5, width: 56, height: 4, bgcolor: 'primary.main', borderRadius: 1 }} />
         </Box>
 
         <Typography

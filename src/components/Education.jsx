@@ -1,4 +1,4 @@
-import { Box, Avatar, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import SectionWrapper from './SectionWrapper'
 import SectionHeader from './SectionHeader'
 
@@ -26,26 +26,31 @@ const Education = () => (
 
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
       {schools.map(({ logo, name, degree, years, gpa, detail }) => (
-        <Box
-          key={name}
-          sx={{
-            display: 'flex',
-            gap: { xs: 2, sm: 3 },
-            alignItems: 'flex-start',
-          }}
-        >
-          <Avatar
-            src={logo}
-            alt={name}
-            variant="rounded"
+        <Box key={name} sx={{ display: 'flex', gap: { xs: 2, sm: 3 }, alignItems: 'flex-start' }}>
+          {/* Logo as plain image — not shoehorned into a circular Avatar */}
+          <Box
             sx={{
               width: { xs: 52, sm: 64 },
               height: { xs: 52, sm: 64 },
               flexShrink: 0,
-              bgcolor: '#F1F5F9',
-              '& img': { objectFit: 'contain', p: 0.5 },
+              borderRadius: 2,
+              border: '1px solid',
+              borderColor: 'divider',
+              bgcolor: '#F8FAFC',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              overflow: 'hidden',
+              p: 0.75,
             }}
-          />
+          >
+            <Box
+              component="img"
+              src={logo}
+              alt={name}
+              sx={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
+            />
+          </Box>
 
           <Box>
             <Typography variant="h6" fontWeight={700} sx={{ lineHeight: 1.3, mb: 0.25 }}>
