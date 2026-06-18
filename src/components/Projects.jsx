@@ -3,8 +3,12 @@ import { useTheme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import ProjectCard from './ProjectCard'
 
-// Add newer projects here (from your resume). Each entry: { img, title, desc, link }
 const projects = [
+  {
+    title: 'Job Match Intelligence System',
+    desc: 'End-to-end RAG pipeline that ingests job postings from Gmail, ranks them by semantic similarity to a candidate profile, and generates structured fit analysis using GPT-4o. Stack: Gmail OAuth, OpenAI embeddings, ChromaDB, GPT-4o, Streamlit. Includes an LLM-as-judge evaluation framework across 157 job postings.',
+    link: 'https://job-match-intelligence.streamlit.app',
+  },
   {
     img: '/images/tictactoe.jpg',
     title: '3D Tic-Tac-Toe AI',

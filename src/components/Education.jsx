@@ -6,14 +6,16 @@ const schools = [
   {
     logo: '/images/SFU-block-logo.png',
     name: 'Simon Fraser University',
-    degree: 'Master of Science in Computer Science',
-    years: '2022 – 2024',
+    degree: 'Master of Science in Computing Science',
+    years: 'Sep 2022 – Dec 2025',
+    detail: 'GPA 3.84/4.33 · Thesis: "Learning to Prioritize: Accelerating Priority-Based Search for Lifelong Multi-Agent Path Finding"',
   },
   {
     logo: '/images/NTHU_Round_Seal.png',
     name: 'National Tsing Hua University',
     degree: 'Bachelor of Science in Computer Science',
-    years: '2018 – 2022',
+    years: 'Sep 2018 – Jun 2022',
+    detail: 'GPA 3.94/4.3',
   },
 ]
 
@@ -34,7 +36,7 @@ const Education = () => {
             Education
           </Typography>
 
-          {schools.map(({ logo, name, degree, years }) => (
+          {schools.map(({ logo, name, degree, years, detail }) => (
             <Grid container spacing={3} sx={{ py: 3 }} key={name}>
               <Grid item xs={12} md={4}>
                 <Card sx={{ maxWidth: 345 }}>
@@ -50,10 +52,13 @@ const Education = () => {
                   <Typography gutterBottom align="left" variant="h4" component="h2">
                     {name}
                   </Typography>
-                  <Typography variant="h6" align="left" color="text.secondary">
+                  <Typography variant="h6" align="left" color="text.secondary" gutterBottom>
                     {degree}
                     <br />
                     {years}
+                  </Typography>
+                  <Typography variant="body2" align="left" color="text.secondary">
+                    {detail}
                   </Typography>
                 </CardContent>
               </Grid>

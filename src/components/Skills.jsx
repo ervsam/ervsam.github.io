@@ -2,23 +2,29 @@ import { Container, Box, Typography, Grid, Chip } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
-// Update these with the skills from your resume.
 const skillGroups = [
   {
     category: 'Languages',
-    skills: ['Python', 'JavaScript', 'TypeScript', 'Java', 'C/C++', 'SQL'],
+    skills: ['Python', 'C++'],
   },
   {
-    category: 'ML / Data',
-    skills: ['TensorFlow', 'Keras', 'PyTorch', 'fast.ai', 'scikit-learn', 'NumPy', 'Pandas'],
+    category: 'Machine Learning',
+    skills: ['PyTorch', 'XGBoost', 'Scikit-learn', 'Supervised Learning', 'RAG'],
   },
   {
-    category: 'Web',
-    skills: ['React', 'Node.js', 'HTML', 'CSS', 'REST APIs'],
+    category: 'ML Systems',
+    skills: [
+      'Data Pipelines',
+      'Feature Engineering',
+      'Data Validation',
+      'Real-Time Inference',
+      'C++/Python Integration',
+      'REST APIs',
+    ],
   },
   {
-    category: 'Tools',
-    skills: ['Git', 'Docker', 'Linux', 'Jupyter'],
+    category: 'Tools & Data',
+    skills: ['NumPy', 'Pandas', 'Git', 'Linux', 'Jupyter', 'TensorBoard', 'OpenAI API', 'ChromaDB', 'Streamlit'],
   },
 ]
 

@@ -1,4 +1,5 @@
-import { Card, CardActionArea, CardMedia, CardContent, Typography } from '@mui/material'
+import { Card, CardActionArea, CardMedia, CardContent, Typography, Box } from '@mui/material'
+import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 
 const ProjectCard = ({ img, title, desc, link }) => (
   <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
@@ -6,7 +7,21 @@ const ProjectCard = ({ img, title, desc, link }) => (
       {...(link ? { component: 'a', href: link, target: '_blank', rel: 'noopener noreferrer' } : {})}
       sx={{ flexGrow: 1 }}
     >
-      <CardMedia sx={{ height: 0, paddingTop: '75%' }} image={img} title={title} />
+      {img ? (
+        <CardMedia sx={{ height: 0, paddingTop: '75%' }} image={img} title={title} />
+      ) : (
+        <Box
+          sx={{
+            height: 160,
+            bgcolor: 'primary.main',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          {link && <OpenInNewIcon sx={{ color: 'white', fontSize: 40, opacity: 0.8 }} />}
+        </Box>
+      )}
       <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
           {title}
@@ -18,7 +33,7 @@ const ProjectCard = ({ img, title, desc, link }) => (
             overflow: 'hidden',
             textOverflow: 'ellipsis',
             display: '-webkit-box',
-            WebkitLineClamp: 5,
+            WebkitLineClamp: 6,
             WebkitBoxOrient: 'vertical',
           }}
         >

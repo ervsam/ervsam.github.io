@@ -32,14 +32,14 @@ const Intro = () => {
               Hi,
             </Typography>
             <Typography align="left" gutterBottom>
-              My name is Ervin. I recently graduated with a Master's in Computer
-              Science from Simon Fraser University and I'm currently looking for
-              software engineering roles.
+              I'm Ervin — an ML engineer with an M.Sc. in Computing Science from Simon
+              Fraser University. I build end-to-end ML pipelines, train and deploy models,
+              and integrate AI into production systems.
               <br />–<br />
-              My work spans machine learning, data science, and web development.
+              Most recently I reduced large-scale multi-agent planning latency by 95%
+              using a CNN + attention model in PyTorch.
             </Typography>
             <Box sx={{ mt: 2 }}>
-              {/* Add your resume PDF to public/resume.pdf to enable this button */}
               <Button
                 variant="outlined"
                 startIcon={<DownloadIcon />}
@@ -54,9 +54,10 @@ const Intro = () => {
 
           <Grid item xs={12} md={3}>
             <Typography align="left" gutterBottom>
-              Scroll down to see my experience, projects, and skills.
+              Currently looking for ML engineer roles.
               <br />–<br />
-              Feel free to reach out via the contact section below.
+              Scroll down to see my experience, projects, and skills, or reach out via
+              the contact section below.
             </Typography>
           </Grid>
         </Grid>
