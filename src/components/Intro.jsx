@@ -1,69 +1,120 @@
-import { Container, Box, Grid, Typography, Card, CardMedia, Button } from '@mui/material'
-import { useTheme } from '@mui/material/styles'
-import useMediaQuery from '@mui/material/useMediaQuery'
+import { Avatar, Box, Button, Chip, Container, Stack, Typography } from '@mui/material'
 import DownloadIcon from '@mui/icons-material/Download'
+import LinkedInIcon from '@mui/icons-material/LinkedIn'
+import GitHubIcon from '@mui/icons-material/GitHub'
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord'
 
-const Intro = () => {
-  const theme = useTheme()
-  const isDesktop = useMediaQuery(theme.breakpoints.up('md'))
-
-  return (
+const Intro = () => (
+  <Box
+    sx={{
+      pt: { xs: '80px', md: '96px' },
+      pb: { xs: 8, md: 12 },
+      background: 'linear-gradient(180deg, #F0F7FF 0%, #FFFFFF 100%)',
+    }}
+  >
     <Container maxWidth="lg">
-      <Box sx={{ mt: isDesktop ? '360px' : '108px', mb: isDesktop ? '80px' : '40px', mx: isDesktop ? 0 : '40px' }}>
-        <Grid
-          container
-          direction={isDesktop ? 'row' : 'column'}
-          justifyContent="space-around"
-          alignItems={isDesktop ? 'flex-end' : 'flex-start'}
-          spacing={4}
-        >
-          <Grid item xs={12} md={3} sx={{ ...(isDesktop ? {} : { mx: 'auto' }) }}>
-            <Card sx={{ borderRadius: '50%', maxWidth: 200, overflow: 'hidden' }}>
-              <CardMedia
-                sx={{ height: 0, paddingTop: '100%' }}
-                image="/images/face_img.jpg"
-                title="Hi, I'm Ervin!"
-              />
-            </Card>
-          </Grid>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: { xs: 'column', md: 'row' },
+          alignItems: { xs: 'flex-start', md: 'center' },
+          gap: { xs: 4, md: 6 },
+        }}
+      >
+        {/* Photo */}
+        <Box sx={{ flexShrink: 0 }}>
+          <Avatar
+            src="/images/face_img.jpg"
+            alt="Ervin Samuel"
+            sx={{
+              width: { xs: 120, md: 168 },
+              height: { xs: 120, md: 168 },
+              border: '3px solid',
+              borderColor: 'primary.light',
+              boxShadow: '0 8px 32px rgba(37,99,235,0.15)',
+            }}
+          />
+        </Box>
 
-          <Grid item xs={12} md={4}>
-            <Typography variant="h2" align="left" gutterBottom>
-              Hi,
+        {/* Bio */}
+        <Box sx={{ flex: 1, minWidth: 0 }}>
+          {/* Status indicator */}
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75, mb: 1.5 }}>
+            <FiberManualRecordIcon sx={{ color: '#22c55e', fontSize: 10 }} />
+            <Typography variant="caption" color="text.secondary" fontWeight={500} letterSpacing="0.02em">
+              Open to ML engineer roles · Vancouver, BC
             </Typography>
-            <Typography align="left" gutterBottom>
-              I'm Ervin — an ML engineer with an M.Sc. in Computing Science from Simon
-              Fraser University. I build end-to-end ML pipelines, train and deploy models,
-              and integrate AI into production systems.
-              <br />–<br />
-              Most recently I reduced large-scale multi-agent planning latency by 95%
-              using a CNN + attention model in PyTorch.
-            </Typography>
-            <Box sx={{ mt: 2 }}>
-              <Button
-                variant="outlined"
-                startIcon={<DownloadIcon />}
-                href="/resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Resume
-              </Button>
-            </Box>
-          </Grid>
+          </Box>
 
-          <Grid item xs={12} md={3}>
-            <Typography align="left" gutterBottom>
-              Currently looking for ML engineer roles.
-              <br />–<br />
-              Scroll down to see my experience, projects, and skills, or reach out via
-              the contact section below.
+          <Typography
+            variant="h1"
+            sx={{ fontSize: { xs: '2rem', sm: '2.75rem', md: '3.25rem' }, mb: 0.5 }}
+          >
+            Ervin Samuel
+            <Typography
+              component="span"
+              sx={{ display: 'block', fontSize: '0.55em', fontWeight: 500, color: 'text.secondary', mt: 0.5 }}
+            >
+              M.Sc. in Computing Science
             </Typography>
-          </Grid>
-        </Grid>
+          </Typography>
+
+          <Typography
+            variant="h5"
+            color="primary"
+            sx={{ fontWeight: 600, mb: 2.5, fontSize: { xs: '1rem', md: '1.15rem' } }}
+          >
+            ML Engineer
+          </Typography>
+
+          <Typography
+            variant="body1"
+            color="text.secondary"
+            sx={{ maxWidth: 520, mb: 3.5, lineHeight: 1.8 }}
+          >
+            I build end-to-end ML pipelines, train and deploy models, and integrate AI into
+            production systems. Most recently reduced large-scale multi-agent planning latency
+            by{' '}
+            <Typography component="span" fontWeight={600} color="text.primary">
+              95%
+            </Typography>{' '}
+            using a CNN + attention model in PyTorch.
+          </Typography>
+
+          <Stack direction="row" spacing={1.5} flexWrap="wrap" useFlexGap>
+            <Button
+              variant="contained"
+              startIcon={<DownloadIcon />}
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              sx={{ px: 2.5 }}
+            >
+              Resume
+            </Button>
+            <Button
+              variant="outlined"
+              startIcon={<LinkedInIcon />}
+              href="https://www.linkedin.com/in/ervinsamuel/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LinkedIn
+            </Button>
+            <Button
+              variant="outlined"
+              startIcon={<GitHubIcon />}
+              href="https://github.com/ervsam"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub
+            </Button>
+          </Stack>
+        </Box>
       </Box>
     </Container>
-  )
-}
+  </Box>
+)
 
 export default Intro
