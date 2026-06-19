@@ -5,7 +5,7 @@ const roles = [
     title: 'ML Research Assistant',
     badge: '95% latency ↓',
     period: '2022–25',
-    company: 'Simon Fraser University · AIR Lab',
+    company: 'Simon Fraser University · AIRob Lab',
     desc: 'Designed and deployed an end-to-end ML automation pipeline and a CNN + multi-head attention model in PyTorch into a live C++ multi-agent planning system — cutting planning latency by 95% while holding solution quality within 6%.',
     tags: ['PyTorch', 'C++', 'CNN + Attention', 'Multi-agent planning'],
     borderTop: 'var(--ink)',
@@ -38,7 +38,7 @@ const schools = [
   {
     degree: 'M.Sc. Computing Science',
     school: 'Simon Fraser University · Burnaby, BC',
-    note: 'AIR Lab — machine learning for multi-agent planning · GPA 3.84/4.33',
+    note: 'AIRob Lab — machine learning for multi-agent planning · GPA 3.84/4.33',
     thesis: 'Thesis: "Learning to Prioritize: Accelerating Priority-Based Search for Lifelong Multi-Agent Path Finding"',
     tag: 'Class of 2025',
   },
