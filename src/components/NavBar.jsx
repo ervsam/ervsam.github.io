@@ -1,160 +1,140 @@
-import { useState } from 'react'
-import {
-  AppBar, Toolbar, Container, Button, Box, IconButton,
-  Drawer, List, ListItem, ListItemButton, ListItemText,
-  Typography, useScrollTrigger,
-} from '@mui/material'
-import MenuIcon from '@mui/icons-material/Menu'
-import CloseIcon from '@mui/icons-material/Close'
-import { Link, animateScroll as scroll } from 'react-scroll'
+import { useEffect, useState } from 'react'
 
-const navItems = [
-  { label: 'About',      to: null },
-  { label: 'Experience', to: 'experience' },
-  { label: 'Education',  to: 'education' },
-  { label: 'Skills',     to: 'skills' },
-  { label: 'Projects',   to: 'projects' },
-  { label: 'Contact',    to: 'contact' },
+const links = [
+  { label: 'Work', href: '#work' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Contact', href: '#contact' },
 ]
 
-const scrollToTop = () => scroll.scrollToTop({ duration: 500, smooth: 'easeInOutQuad' })
-
 const NavBar = () => {
-  const [drawerOpen, setDrawerOpen] = useState(false)
-  const scrolled = useScrollTrigger({ disableHysteresis: true, threshold: 30 })
+  const [scrolled, setScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 36)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  const closeMenu = () => setMenuOpen(false)
 
   return (
-    <>
-      <AppBar
-        position="fixed"
-        elevation={0}
-        sx={{
-          top: 2,
-          bgcolor: scrolled ? 'rgba(255,255,255,0.88)' : 'rgba(255,255,255,0)',
-          backdropFilter: scrolled ? 'blur(16px)' : 'none',
-          borderBottom: '1px solid',
-          borderColor: scrolled ? 'divider' : 'transparent',
-          transition: 'background-color 0.25s, border-color 0.25s, backdrop-filter 0.25s',
-          color: 'text.primary',
+    <nav
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 100,
+        height: 60,
+        padding: '0 var(--pad-side)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        background: scrolled ? 'rgba(251,251,249,0.94)' : 'transparent',
+        backdropFilter: scrolled ? 'blur(16px)' : 'none',
+        borderBottom: '1px solid',
+        borderBottomColor: scrolled ? 'var(--border)' : 'transparent',
+        transition: 'background .35s ease, border-color .35s ease',
+      }}
+    >
+      <a
+        href="#top"
+        onClick={closeMenu}
+        style={{ fontSize: 15, fontWeight: 700, color: 'var(--ink)', textDecoration: 'none', letterSpacing: '-0.02em' }}
+      >
+        Ervin Samuel
+      </a>
+
+      {/* Desktop links */}
+      <div className="nav-desktop" style={{ display: 'flex', alignItems: 'center', gap: 28 }}>
+        {links.map((l) => (
+          <a key={l.label} href={l.href} className="hover-accent" style={{ fontSize: 13, color: 'var(--gray)' }}>
+            {l.label}
+          </a>
+        ))}
+        <a
+          href="/resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mono"
+          style={{
+            fontSize: 12,
+            fontWeight: 500,
+            color: 'var(--ink)',
+            textDecoration: 'none',
+            border: '1px solid var(--ink)',
+            padding: '6px 13px',
+            transition: 'background .15s, color .15s',
+          }}
+          onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--ink)'; e.currentTarget.style.color = 'var(--bg)' }}
+          onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--ink)' }}
+        >
+          Résumé ↗
+        </a>
+      </div>
+
+      {/* Mobile hamburger */}
+      <button
+        className="nav-burger"
+        onClick={() => setMenuOpen((v) => !v)}
+        aria-label="Toggle menu"
+        style={{
+          display: 'none',
+          background: 'none',
+          border: 'none',
+          cursor: 'pointer',
+          width: 28,
+          height: 28,
+          flexDirection: 'column',
+          justifyContent: 'center',
+          gap: 5,
         }}
       >
-        <Container maxWidth="lg">
-          <Toolbar disableGutters sx={{ minHeight: { xs: 56, md: 64 }, justifyContent: 'space-between' }}>
-            <Button
-              onClick={scrollToTop}
-              disableRipple
-              sx={{
-                fontWeight: 800,
-                fontSize: '1.1rem',
-                color: 'primary.main',
-                letterSpacing: '-0.03em',
-                minWidth: 0,
-                p: 0,
-                '&:hover': { bgcolor: 'transparent', opacity: 0.75 },
-              }}
+        <span style={{ display: 'block', height: 1, background: 'var(--ink)', transform: menuOpen ? 'translateY(3px) rotate(45deg)' : 'none', transition: 'transform .2s' }} />
+        <span style={{ display: 'block', height: 1, background: 'var(--ink)', transform: menuOpen ? 'translateY(-3px) rotate(-45deg)' : 'none', transition: 'transform .2s' }} />
+      </button>
+
+      {/* Mobile dropdown */}
+      {menuOpen && (
+        <div
+          className="nav-mobile-menu"
+          style={{
+            position: 'absolute',
+            top: 60,
+            left: 0,
+            right: 0,
+            background: 'var(--bg)',
+            borderBottom: '1px solid var(--ink)',
+            display: 'flex',
+            flexDirection: 'column',
+            padding: '8px var(--pad-side) 18px',
+          }}
+        >
+          {links.map((l) => (
+            <a
+              key={l.label}
+              href={l.href}
+              onClick={closeMenu}
+              className="hover-accent"
+              style={{ fontSize: 14, color: 'var(--ink)', padding: '12px 0', borderBottom: '1px solid var(--border)' }}
             >
-              ES
-            </Button>
-
-            <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 0.5 }}>
-              {navItems.map(({ label, to }) =>
-                to ? (
-                  <Link
-                    key={label}
-                    to={to}
-                    smooth
-                    duration={500}
-                    offset={-72}
-                    style={{ textDecoration: 'none' }}
-                  >
-                    <Button
-                      disableRipple
-                      sx={{
-                        color: 'text.secondary',
-                        fontWeight: 500,
-                        fontSize: '0.875rem',
-                        '&:hover': { color: 'primary.main', bgcolor: 'transparent' },
-                      }}
-                    >
-                      {label}
-                    </Button>
-                  </Link>
-                ) : (
-                  <Button
-                    key={label}
-                    onClick={scrollToTop}
-                    disableRipple
-                    sx={{
-                      color: 'text.secondary',
-                      fontWeight: 500,
-                      fontSize: '0.875rem',
-                      '&:hover': { color: 'primary.main', bgcolor: 'transparent' },
-                    }}
-                  >
-                    {label}
-                  </Button>
-                )
-              )}
-            </Box>
-
-            <IconButton
-              onClick={() => setDrawerOpen(true)}
-              sx={{ display: { xs: 'flex', md: 'none' }, color: 'text.primary' }}
-              aria-label="Open menu"
-            >
-              <MenuIcon />
-            </IconButton>
-          </Toolbar>
-        </Container>
-      </AppBar>
-
-      <Drawer
-        anchor="right"
-        open={drawerOpen}
-        onClose={() => setDrawerOpen(false)}
-        PaperProps={{ sx: { width: 260, pt: 1 } }}
-      >
-        <Box sx={{ px: 2, pb: 1, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Typography fontWeight={800} color="primary.main" fontSize="1.1rem">ES</Typography>
-          <IconButton onClick={() => setDrawerOpen(false)} size="small">
-            <CloseIcon />
-          </IconButton>
-        </Box>
-        <List sx={{ px: 1 }}>
-          {navItems.map(({ label, to }) => (
-            <ListItem key={label} disablePadding>
-              {to ? (
-                <Link
-                  to={to}
-                  smooth
-                  duration={500}
-                  offset={-72}
-                  style={{ textDecoration: 'none', width: '100%' }}
-                  onClick={() => setDrawerOpen(false)}
-                >
-                  <ListItemButton sx={{ borderRadius: 1 }}>
-                    <ListItemText
-                      primary={label}
-                      primaryTypographyProps={{ fontWeight: 500, fontSize: '0.9375rem' }}
-                    />
-                  </ListItemButton>
-                </Link>
-              ) : (
-                <ListItemButton
-                  sx={{ borderRadius: 1 }}
-                  onClick={() => { scrollToTop(); setDrawerOpen(false) }}
-                >
-                  <ListItemText
-                    primary={label}
-                    primaryTypographyProps={{ fontWeight: 500, fontSize: '0.9375rem' }}
-                  />
-                </ListItemButton>
-              )}
-            </ListItem>
+              {l.label}
+            </a>
           ))}
-        </List>
-      </Drawer>
-    </>
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mono hover-accent"
+            style={{ fontSize: 13, fontWeight: 500, color: 'var(--ink)', padding: '14px 0 0' }}
+          >
+            Résumé ↗
+          </a>
+        </div>
+      )}
+    </nav>
   )
 }
 
