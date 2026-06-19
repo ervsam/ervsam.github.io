@@ -39,7 +39,8 @@ const schools = [
     degree: 'M.Sc. Computing Science',
     school: 'Simon Fraser University · Burnaby, BC',
     note: 'AIRob Lab — machine learning for multi-agent planning · GPA 3.84/4.33',
-    thesis: 'Thesis: "Learning to Prioritize: Accelerating Priority-Based Search for Lifelong Multi-Agent Path Finding"',
+    thesisTitle: 'Learning to Prioritize: Accelerating Priority-Based Search for Lifelong Multi-Agent Path Finding',
+    thesisUrl: 'https://summit.sfu.ca/_flysystem/fedora/2026-01/etd24107.pdf',
     tag: 'Class of 2025',
   },
   {
@@ -132,9 +133,22 @@ const ExperienceSection = () => {
                   </div>
                   <div style={{ fontSize: 14, color: 'var(--gray)' }}>{s.school}</div>
                   <div style={{ fontSize: 13.5, color: 'var(--gray-mid)', marginTop: 6 }}>{s.note}</div>
-                  {s.thesis && (
-                    <div style={{ fontSize: 13, color: 'var(--gray-mid)', marginTop: 6, fontStyle: 'italic', maxWidth: 560, lineHeight: 1.55 }}>
-                      {s.thesis}
+                  {s.thesisTitle && (
+                    <div style={{ fontSize: 13, color: 'var(--gray-mid)', marginTop: 6, maxWidth: 560, lineHeight: 1.55 }}>
+                      Thesis:{' '}
+                      {s.thesisUrl ? (
+                        <a
+                          href={s.thesisUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hover-accent"
+                          style={{ color: 'var(--gray-mid)', fontStyle: 'italic', textDecoration: 'none', borderBottom: '1px solid var(--border-mid)' }}
+                        >
+                          "{s.thesisTitle}" ↗
+                        </a>
+                      ) : (
+                        <span style={{ fontStyle: 'italic' }}>"{s.thesisTitle}"</span>
+                      )}
                     </div>
                   )}
                 </div>
