@@ -7,6 +7,10 @@ const items = [
     label: 'Building',
     value: 'Job Match Intelligence — a RAG pipeline for my own job hunt',
   },
+  {
+    label: 'Reading',
+    value: 'Religious Affections — Jonathan Edwards',
+  },
 ]
 
 const CurrentlyBand = () => (
