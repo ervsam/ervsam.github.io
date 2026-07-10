@@ -18,6 +18,14 @@ const projects = [
     fig: 'Fig. 02 — 4×4×4 tree search',
     visual: 'grid',
   },
+  {
+    title: 'Bakpao',
+    desc: 'Companion app for a 52-week, 260-chapter Navigators 5x5x5 Bible reading plan. Anonymous Q&A board with upvoting and role-gated answering, built mobile-first on plain Node.js.',
+    tags: ['Express', 'SQLite', 'Google OAuth'],
+    href: 'http://bakpao.fly.dev/',
+    fig: 'Fig. 03 — 52-week reading plan',
+    visual: 'plan',
+  },
 ]
 
 const SelectedWork = () => {
@@ -50,7 +58,7 @@ const SelectedWork = () => {
           className="mono hover-accent"
           style={{ fontSize: 12.5, letterSpacing: '0.04em', color: 'var(--ink)', paddingBottom: 7, borderBottom: '1px solid var(--border-mid)' }}
         >
-          2 projects — more on GitHub ↗
+          3 projects — more on GitHub ↗
         </a>
       </div>
 

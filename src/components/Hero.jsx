@@ -60,9 +60,7 @@ const Hero = () => (
           <img
             src="/images/face_img.jpg"
             alt="Ervin Samuel"
-            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'grayscale(100%) contrast(1.02)', transition: 'filter .45s ease' }}
-            onMouseEnter={(e) => (e.currentTarget.style.filter = 'grayscale(0%) contrast(1)')}
-            onMouseLeave={(e) => (e.currentTarget.style.filter = 'grayscale(100%) contrast(1.02)')}
+            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
           />
         </div>
         <div style={{ borderTop: '1px solid var(--ink)' }}>

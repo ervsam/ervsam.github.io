@@ -51,6 +51,36 @@ const GridViz = () => (
   </div>
 )
 
+const planCells = Array.from({ length: 52 }, (_, i) => i)
+const PLAN_CURRENT_WEEK = 27
+
+const PlanViz = () => (
+  <div
+    style={{
+      display: 'grid',
+      gridTemplateColumns: 'repeat(13, 1fr)',
+      gap: 4,
+      marginBottom: 22,
+      width: '100%',
+    }}
+  >
+    {planCells.map((i) => {
+      const isPast = i < PLAN_CURRENT_WEEK
+      const isCurrent = i === PLAN_CURRENT_WEEK
+      return (
+        <div
+          key={i}
+          style={{
+            height: 8,
+            background: isCurrent ? 'var(--accent)' : isPast ? '#dedbd2' : 'transparent',
+            border: isCurrent ? 'none' : '1px solid #dedbd2',
+          }}
+        />
+      )
+    })}
+  </div>
+)
+
 const ProjectCard = ({ title, desc, tags, href, fig, visual, delay = '0s' }) => {
   const revealRef = useReveal()
   return (
@@ -84,7 +114,7 @@ const ProjectCard = ({ title, desc, tags, href, fig, visual, delay = '0s' }) => 
         overflow: 'hidden',
       }}
     >
-      {visual === 'bars' ? <BarsViz /> : <GridViz />}
+      {visual === 'bars' ? <BarsViz /> : visual === 'plan' ? <PlanViz /> : <GridViz />}
       <span className="mono" style={{ position: 'relative', fontSize: 9, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--gray-light)' }}>
         {fig}
       </span>
