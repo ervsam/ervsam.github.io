@@ -51,38 +51,9 @@ const GridViz = () => (
   </div>
 )
 
-const planCells = Array.from({ length: 52 }, (_, i) => i)
-const PLAN_CURRENT_WEEK = 27
-
-const PlanViz = () => (
-  <div
-    style={{
-      display: 'grid',
-      gridTemplateColumns: 'repeat(13, 1fr)',
-      gap: 4,
-      marginBottom: 22,
-      width: '100%',
-    }}
-  >
-    {planCells.map((i) => {
-      const isPast = i < PLAN_CURRENT_WEEK
-      const isCurrent = i === PLAN_CURRENT_WEEK
-      return (
-        <div
-          key={i}
-          style={{
-            height: 8,
-            background: isCurrent ? 'var(--accent)' : isPast ? '#dedbd2' : 'transparent',
-            border: isCurrent ? 'none' : '1px solid #dedbd2',
-          }}
-        />
-      )
-    })}
-  </div>
-)
-
-const ProjectCard = ({ title, desc, tags, href, fig, visual, delay = '0s' }) => {
+const ProjectCard = ({ title, desc, tags, href, fig, visual, image, delay = '0s' }) => {
   const revealRef = useReveal()
+  const isImage = visual === 'image'
   return (
   <a
     ref={revealRef}
@@ -105,7 +76,7 @@ const ProjectCard = ({ title, desc, tags, href, fig, visual, delay = '0s' }) => 
         height: 262,
         background: 'var(--bg-card)',
         borderBottom: '1px solid var(--border)',
-        padding: '30px 30px 24px',
+        padding: isImage ? 0 : '30px 30px 24px',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-end',
@@ -114,8 +85,28 @@ const ProjectCard = ({ title, desc, tags, href, fig, visual, delay = '0s' }) => 
         overflow: 'hidden',
       }}
     >
-      {visual === 'bars' ? <BarsViz /> : visual === 'plan' ? <PlanViz /> : <GridViz />}
-      <span className="mono" style={{ position: 'relative', fontSize: 9, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--gray-light)' }}>
+      {isImage ? (
+        <img
+          src={image}
+          alt={`${title} screenshot`}
+          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }}
+        />
+      ) : visual === 'bars' ? <BarsViz /> : <GridViz />}
+      <span
+        className="mono"
+        style={{
+          position: isImage ? 'absolute' : 'relative',
+          bottom: isImage ? 0 : 'auto',
+          left: isImage ? 0 : 'auto',
+          right: isImage ? 0 : 'auto',
+          fontSize: 9,
+          letterSpacing: '0.18em',
+          textTransform: 'uppercase',
+          color: isImage ? '#fff' : 'var(--gray-light)',
+          background: isImage ? 'rgba(26,26,26,0.72)' : 'transparent',
+          padding: isImage ? '7px 12px' : 0,
+        }}
+      >
         {fig}
       </span>
     </div>

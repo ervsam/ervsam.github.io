@@ -7,8 +7,9 @@ const projects = [
     desc: 'End-to-end RAG pipeline that ranks job postings by fit. GPT-4o scoring with LLM-as-judge evaluation across 157 postings.',
     tags: ['RAG', 'GPT-4o', 'ChromaDB', 'Python'],
     href: 'https://job-match-intelligence.streamlit.app',
-    fig: 'Fig. 01 — Retrieval ranking',
-    visual: 'bars',
+    fig: 'Fig. 01 — Live app',
+    visual: 'image',
+    image: '/images/job-match-screenshot.png',
   },
   {
     title: '3D Tic-Tac-Toe AI',
@@ -23,8 +24,9 @@ const projects = [
     desc: 'Companion app for a 52-week, 260-chapter Navigators 5x5x5 Bible reading plan. Anonymous Q&A board with upvoting and role-gated answering, built mobile-first on plain Node.js.',
     tags: ['Express', 'SQLite', 'Google OAuth'],
     href: 'http://bakpao.fly.dev/',
-    fig: 'Fig. 03 — 52-week reading plan',
-    visual: 'plan',
+    fig: 'Fig. 03 — Live app',
+    visual: 'image',
+    image: '/images/bakpao-screenshot.png',
   },
 ]
 
